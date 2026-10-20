@@ -1,5 +1,11 @@
 # Cinematic Bars
 
+[![Latest release](https://img.shields.io/github/v/release/tangzixi0724/Cinematic-Bars?sort=semver&label=release)](https://github.com/tangzixi0724/Cinematic-Bars/releases/latest)
+[![Minecraft 26.3](https://img.shields.io/badge/Minecraft-26.3-62b47a)](https://www.minecraft.net/)
+[![Fabric Loader 0.19.0+](https://img.shields.io/badge/Fabric%20Loader-0.19.0%2B-dbbd8b)](https://fabricmc.net/)
+[![License MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![中文说明](https://img.shields.io/badge/%E4%B8%AD%E6%96%87%E8%AF%B4%E6%98%8E-README.zh.md-lightgrey)](README.zh.md)
+
 Hold a key and cinematic letterbox bars close in from the top and bottom of the screen, easing
 smoothly. Let go and they retract. The effect is extracted from the **AstraLex** shader pack's
 `CONCENTRATION` ("sneak bars") pass and reimplemented as a standalone Fabric mod, so it works with
@@ -8,6 +14,13 @@ any shader pack — or with no shaders at all.
 Display name and mod id are both **Cinematic Bars** / `cinematic-bars`. Earlier releases shipped as
 `flimbar` and `flim-bar`, so settings start from scratch: an old `config/flimbar.json` and its key
 binding are not read any more.
+
+## Download
+
+Grab the jar from [Releases](https://github.com/tangzixi0724/Cinematic-Bars/releases/latest) and drop
+it into `mods/` next to Fabric API and YACL. GitHub turns the `+` in the file name into a dot, so the
+asset arrives as `cinematic-bars-1.2.0.26.3.jar`; the jar inside is identical, and Modrinth keeps the
+original `cinematic-bars-1.2.0+26.3.jar` name.
 
 ## Features
 
@@ -92,14 +105,14 @@ player installs YACL themselves (it is a hard dependency), while ModMenu stays o
 ./gradlew build
 ```
 
-The distributable ends up in `build/libs/`. Installing into a normal launcher profile: drop
-`build/libs/cinematic-bar-*.jar` into `mods/` together with Fabric API and YACL (plus ModMenu if you
+The distributable ends up in `build/libs/` as `cinematic-bars-1.2.0+26.3.jar`. Installing into a normal
+launcher profile: drop that jar into `mods/` together with Fabric API and YACL (plus ModMenu if you
 want the settings button).
 
 ## Layout
 
 ```
-src/main/java/com/zixi/cinematic-bars/
+src/main/java/com/zixi/cinematicbars/
   CinematicBars.java                   client entrypoint
   CinematicBarsConfig.java             settings + JSON persistence + easing curves
   CinematicBarsKeybind.java            activation key, hold/toggle latch
