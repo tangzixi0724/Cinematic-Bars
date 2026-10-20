@@ -1,0 +1,26 @@
+# Build output
+.gradle/
+build/
+out/
+
+# Dev run directory
+run/
+runclient.log
+*.log
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
+
+# OS
+.DS_Store
+Thumbs.db
+
+# The Gradle wrapper jar must stay tracked
+!gradle/wrapper/gradle-wrapper.jar

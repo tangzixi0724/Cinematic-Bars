@@ -1,0 +1,85 @@
+plugins {
+	// Non-obfuscated Loom, used for Minecraft 26.1 and newer.
+	id 'net.fabricmc.fabric-loom' version '1.18.4'
+	id 'maven-publish'
+}
+
+version = "${project.mod_version}+${project.minecraft_version}"
+group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
+}
+
+repositories {
+	// Local jar for ModMenu (its maven is unreachable from here).
+	flatDir {
+		dirs 'libs'
+	}
+	mavenCentral()
+}
+
+loom {
+	mods {
+		"cinematic-bars" {
+			sourceSet sourceSets.main
+		}
+	}
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+
+	// Non-remapping Loom exposes plain Gradle configurations instead of the mod* ones.
+	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	// Settings screen backend (Yet Another Config Lib) and an optional ModMenu entry point. Both are
+	// kept out of the distributable jar: they are provided by the player's mods folder.
+	compileOnly files('libs/yet_another_config_lib_v3-3.9.7+26.3-fabric.jar')
+	localRuntime files('libs/yet_another_config_lib_v3-3.9.7+26.3-fabric.jar')
+
+	compileOnly files('libs/modmenu-21.0.0.jar')
+
+	// Development runtime so the ModMenu button can be exercised via runClient.
+	localRuntime files('libs/modmenu-21.0.0.jar')
+}
+
+processResources {
+	inputs.property "version", project.version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": inputs.properties.version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 21
+}
+
+java {
+	// no sources jar: it has no classes and breaks the client if installed by mistake (knowledge/04 §6)
+
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
+}
+
+jar {
+	from("LICENSE") {
+		rename { "${it}_${project.base.archivesName.get()}" }
+	}
+}
+
+publishing {
+	publications {
+		create("mavenJava", MavenPublication) {
+			artifactId = project.archives_base_name
+			from components.java
+		}
+	}
+
+	repositories {
+	}
+}
+
+

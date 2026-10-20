@@ -1,0 +1,1 @@
+Cinematic letterbox bars on demand: hold a key (or toggle, or pin) and black bars glide in from the top and bottom with nine easing curves. Client-side only, works with any shader pack or none.

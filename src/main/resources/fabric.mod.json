@@ -1,0 +1,35 @@
+{
+	"schemaVersion": 1,
+	"id": "cinematic-bars",
+	"version": "${version}",
+	"name": "Cinematic Bars",
+	"description": "为画面添加电影感的挡条~",
+	"authors": [
+		"ZIXI"
+	],
+	"contact": {},
+	"license": "MIT",
+	"icon": "assets/cinematic-bars/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"com.zixi.cinematicbars.CinematicBars"
+		],
+		"modmenu": [
+			"com.zixi.cinematicbars.config.CinematicBarsModMenu"
+		]
+	},
+	"mixins": [
+		"cinematic-bars.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.19.0",
+		"minecraft": "~26.3",
+		"java": ">=21",
+		"fabric-api": "*",
+		"yet_another_config_lib_v3": ">=3.9.0"
+	},
+	"suggests": {
+		"modmenu": "*"
+	}
+}
